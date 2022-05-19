@@ -24,23 +24,6 @@ connection.connect((err) => {
 
 app.use(express.json());
 
-// connection.query("SELECT * FROM movies", (err, result) => {
-//   // Do something when mysql is done executing the query
-//   console.log(err, result)
-// });
-
-// app.get("/api/movies", (req, res) => {
-//   connection.query("SELECT * FROM movies", (err, result) => {
-//     if (err) {
-//       console.error(err);
-//       res.status(500).send("Error retrieving data from database");
-//     } else {
-//       res.json(result);
-//     }
-//   });
-// });
-
-
 app.post('/api/movies', (req, res) => {
   const { title, director, year, color, duration } = req.body;
   connection.query(
@@ -55,27 +38,6 @@ app.post('/api/movies', (req, res) => {
     }
   );
 });
-
-// Route API to add new users
-// app.post("/api/users", (req, res) => {
-//   console.log(req.body);
-//   res.send("Post route is working 🎉");
-// });
-
-// app.post('/api/users', (req, res) => {
-//   const { firstname, lastname, email } = req.body;
-//   connection.query(
-//     'INSERT INTO movies(firstname, lastname, email, color) VALUES (?, ?, ?)',
-//     [firstname, lastname, email],
-//     (err, result) => {
-//       if (err) {
-//         res.status(500).send('Error saving the user');
-//       } else {
-//         res.status(200).send('user successfully saved');
-//       }
-//     }
-//   );
-// });
 
 // We listen to incoming request on the port defined above
 app.listen(port, (err) => {
